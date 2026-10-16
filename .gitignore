@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Generated audio
+output/
+data/transcripts/
+
+# Model cache (downloaded at runtime)
+.cache/
+models/
+
+# IDE / OS
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp

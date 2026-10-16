@@ -1,0 +1,21 @@
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+python-multipart==0.0.9
+TTS==0.22.0
+openai-whisper==20231117
+indic-transliteration==2.3.57
+numpy==1.26.4
+pydub==0.25.1
+aiofiles==23.2.1
+
+# PyTorch — install the right variant AFTER pip install -r requirements.txt:
+#
+#   CPU only (any machine):
+#     pip install torch==2.3.0 torchaudio==2.3.0
+#
+#   CUDA 12.1 (NVIDIA GPU — GTX 1650 or better):
+#     pip install torch==2.3.0 torchaudio==2.3.0 --index-url https://download.pytorch.org/whl/cu121
+#
+# torch and torchaudio are NOT listed here because pip installs the CPU build
+# by default, which silently ignores your GPU. Run one of the commands above
+# manually so you get the correct build for your hardware.

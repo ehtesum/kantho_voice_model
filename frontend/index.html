@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bengali Voice Note Generator</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Bengali Voice Note</h1>
+      <p class="subtitle">Type in Banglish or Bengali — hear it in your voice</p>
+    </header>
+
+    <!-- MAIN: Generate -->
+    <section class="card" id="section-generate">
+      <h2>Generate Voice Note</h2>
+
+      <div id="reference-warning" class="warning hidden">
+        No reference voice uploaded yet. Go to Setup tab first.
+      </div>
+
+      <textarea
+        id="input-text"
+        placeholder="Type here... e.g. ami tomake bhalobashi  OR  আমি তোমাকে ভালোবাসি"
+        rows="4"
+      ></textarea>
+
+      <div id="transliteration-preview" class="preview hidden">
+        Bengali: <span id="preview-bengali"></span>
+      </div>
+
+      <button id="btn-generate" class="btn primary">Generate Voice Note</button>
+
+      <div id="generate-status" class="status hidden"></div>
+
+      <div id="audio-result" class="audio-result hidden">
+        <audio id="audio-player" controls></audio>
+        <a id="download-link" class="btn secondary" download>Download .wav</a>
+      </div>
+
+      <div id="history" class="history hidden">
+        <h3>Recent</h3>
+        <ul id="history-list"></ul>
+      </div>
+    </section>
+
+    <!-- SETUP tabs -->
+    <section class="card" id="section-setup">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-reference">Reference Voice</button>
+        <button class="tab-btn" data-tab="tab-recordings">Training Recordings</button>
+        <button class="tab-btn" data-tab="tab-transcripts">Transcripts</button>
+      </div>
+
+      <!-- Tab: Reference Voice -->
+      <div class="tab-content active" id="tab-reference">
+        <p>Upload a <strong>30–60 second</strong> clear recording of your voice. This is used for voice cloning.</p>
+        <div class="upload-area" id="drop-reference">
+          <input type="file" id="file-reference" accept=".wav,.mp3,.m4a,.ogg,.flac" hidden />
+          <label for="file-reference" class="upload-label">
+            Drop or click to upload reference clip
+          </label>
+        </div>
+        <div id="reference-status-display" class="status-display"></div>
+        <button id="btn-refresh-reference" class="btn secondary small">Check Status</button>
+      </div>
+
+      <!-- Tab: Training Recordings -->
+      <div class="tab-content" id="tab-recordings">
+        <p>Upload all your voice recordings (~10 min total). These will be auto-transcribed by Whisper.</p>
+        <div class="upload-area" id="drop-recordings">
+          <input type="file" id="file-recordings" accept=".wav,.mp3,.m4a,.ogg,.flac" multiple hidden />
+          <label for="file-recordings" class="upload-label">
+            Drop or click to upload recordings (multiple allowed)
+          </label>
+        </div>
+        <div id="recordings-upload-status" class="status hidden"></div>
+        <button id="btn-transcribe" class="btn primary" style="margin-top:1rem;">
+          Auto-Transcribe All Recordings
+        </button>
+        <div id="transcribe-status" class="status hidden"></div>
+      </div>
+
+      <!-- Tab: Transcripts -->
+      <div class="tab-content" id="tab-transcripts">
+        <button id="btn-load-transcripts" class="btn secondary">Load Transcripts</button>
+        <div id="transcripts-list" class="transcripts-list"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
